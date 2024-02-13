@@ -9,18 +9,9 @@
 </head>
 
 <body style="width: 45em;">
-<h1 id="jsotp-demo">JS OTP Demo</h1>
-<p>Javascript Implementation of 2 Factor Auth</p>
-<hr>
 <p id="secret">Secret: </p>
 <h2 id="code-1">TOTP code</h2>
 <p id="ticker">timer</p>
-
-<hr>
-<p id="secret-2">Secret: </p>
-<h2 id="code-2">HOTP code</h2>
-<p>Counter value is: <span id="counter"></span></p>
-<button onclick="requestHotp()">Get new code</button>
 
 <script src="dist/jsOTP.min.js"></script>
 <script>
@@ -28,16 +19,13 @@ $ = function(sel) {
   return document.querySelector(sel);
 };
 
-var secret = "23TplPdS46Juzcyx"
+var secret = "VM7JCHBRWQWVOYRNGVXPSWSQ55XVWDO3"
 $('#secret').innerText = "Secret: " + secret;
 
 var totp = new jsOTP.totp();
 var code = totp.getOtp(secret);
-var hotp = new jsOTP.hotp();
-var doge = hotp.getOtp(secret, 0);
 
 console.log(code);
-console.log(doge);
 
 var updateTicker = function(tick, el) {
   el.innerText = tick;
@@ -57,21 +45,6 @@ var timeLoop = function() {
 
 setInterval(timeLoop, 1000);
 
-var counter = 0;
-var secret2 = "abcdefghijklmnop";
-$('#secret-2').innerText = "Secret: " + secret2;
-$('#counter').innerText = counter;
-
-var updateHotp = function(secret, counter, el) {
-  el.innerText = hotp.getOtp(secret, counter);
-}
-var updateCounter = function(counter, el) {
-  el.innerText = counter;
-}
-var requestHotp = function() {
-  updateHotp(secret2, counter, $('#code-2'));
-  updateCounter(++counter, $('#counter'));
-}
 
 </script>
 
