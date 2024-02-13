@@ -9,7 +9,6 @@
 </head>
 
 <body style="width: 45em;">
-<p id="secret">Secret: </p>
 <h2 id="code-1">TOTP code</h2>
 <p id="ticker">timer</p>
 
@@ -20,7 +19,6 @@ $ = function(sel) {
 };
 
 var secret = "VM7JCHBRWQWVOYRNGVXPSWSQ55XVWDO3"
-$('#secret').innerText = "Secret: " + secret;
 
 var totp = new jsOTP.totp();
 var code = totp.getOtp(secret);
